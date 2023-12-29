@@ -21,6 +21,11 @@ import {
   GetPremiumButton,
   BannerCloseButton,
   LoaderContainer,
+  HomeContentContainer,
+  SearchBarContainer,
+  SearchInput,
+  SearchInputContainer,
+  SearchButton,
 } from './styledComponent'
 
 const apiStatusConstant = {
@@ -130,15 +135,24 @@ class Home extends Component {
                       </BannerLogoAndCloseContainer>
                     </BannerContainer>
                   )}
-                  <div className="home-content-container">
-                    <div className="home-content-responsive-container">
-                      <div className="search-container">
-                        <input type="search" placeholder="Search" />
-                        <MdSearch />
-                      </div>
-                      {this.renderHomeVideos()}
-                    </div>
-                  </div>
+                  <HomeContentContainer>
+                    <SearchBarContainer>
+                      <SearchInputContainer isDarkTheme={isDarkTheme}>
+                        <SearchInput
+                          type="search"
+                          placeholder="Search"
+                          isDarkTheme={isDarkTheme}
+                        />
+                        <SearchButton type="button" isDarkTheme={isDarkTheme}>
+                          <MdSearch
+                            size={14}
+                            color={isDarkTheme ? '#94a3b8' : '#212121'}
+                          />
+                        </SearchButton>
+                      </SearchInputContainer>
+                    </SearchBarContainer>
+                    {this.renderHomeVideos()}
+                  </HomeContentContainer>
                 </BannerAndContentContainer>
               </HomeContainer>
             </HomePageContainer>

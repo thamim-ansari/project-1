@@ -5,6 +5,13 @@ import {
   NoSearchResultHeading,
   NoSearchResultDescription,
   RetryButton,
+  VideosList,
+  VideoItem,
+  ThumbNailImage,
+  VideoInfoContainer,
+  ChannelLogoImage,
+  VideoHeadingAndContentContainer,
+  VideoHeading,
 } from './styledComponent'
 
 const HomeVideoItem = props => {
@@ -36,7 +43,29 @@ const HomeVideoItem = props => {
       }}
     </ThemeContext.Consumer>
   )
-  return renderNoResultView()
+  const renderVideoList = () => (
+    <ThemeContext.Consumer>
+      {value => {
+        const {isDarkTheme} = value
+        return (
+          <VideosList>
+            {videosList.map(eachItem => (
+              <VideoItem key={eachItem.id}>
+                <ThumbNailImage src={eachItem.thumbnailUrl} />
+                <VideoInfoContainer>
+                  <ChannelLogoImage src={eachItem.channel.profileImageUrl} />
+                  <VideoHeadingAndContentContainer>
+                    <VideoHeading>{eachItem.title}</VideoHeading>
+                  </VideoHeadingAndContentContainer>
+                </VideoInfoContainer>
+              </VideoItem>
+            ))}
+          </VideosList>
+        )
+      }}
+    </ThemeContext.Consumer>
+  )
+  return videosList.length === 0 ? renderNoResultView() : renderVideoList()
 }
 
 export default HomeVideoItem

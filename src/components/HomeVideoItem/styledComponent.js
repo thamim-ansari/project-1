@@ -36,3 +36,30 @@ export const RetryButton = styled.button`
   outline: none;
   cursor: pointer;
 `
+export const VideosList = styled.ul`
+  width: 100%;
+  padding: 0px;
+`
+export const VideoItem = styled.li`
+  width: 100%;
+  list-style-type: none;
+`
+export const ThumbNailImage = styled.img`
+  width: 100%;
+  height: 200px;
+  margin-bottom: 15px;
+`
+export const VideoInfoContainer = styled.div`
+  display: flex;
+`
+export const ChannelLogoImage = styled.img`
+  width: 100px;
+`
+
+export const VideoHeadingAndContentContainer = styled.div`
+  display: flex;
+`
+
+export const VideoHeading = styled.h1`
+  font-family: 'Roboto';
+`

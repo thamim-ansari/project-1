@@ -63,3 +63,43 @@ export const LoaderContainer = styled.div`
   align-items: center;
   height: 50vh;
 `
+export const HomeContentContainer = styled.div`
+  font-family: 'Roboto';
+`
+export const SearchBarContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  @media screen and (min-width: 768px) {
+    width: 50%;
+  }
+`
+export const SearchInputContainer = styled.div`
+  display: flex;
+  width: 95%;
+  border: 1px solid ${props => (props.isDarkTheme ? '#383838' : '#e2e8f0')};
+`
+export const SearchInput = styled.input`
+  color: ${props => (props.isDarkTheme ? '#94a3b8' : '#475569')};
+  font-family: 'Roboto';
+  font-size: 14px;
+  background-color: transparent;
+  flex-grow: 1;
+  padding-left: 10px;
+  height: 30px;
+  border: none;
+  outline: none;
+`
+export const SearchButton = styled.button`
+  background-color: ${props => (props.isDarkTheme ? '#313131' : '#f1f5f9')};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 24px;
+  border: none;
+  border-left: 1px solid ${props => (props.isDarkTheme ? '#383838' : '#e2e8f0')};
+  outline: none;
+  cursor: pointer;
+`
