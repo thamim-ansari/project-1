@@ -57,3 +57,9 @@ export const GetPremiumButton = styled.button`
   border: 1px solid #000000;
   padding: 8px 16px;
 `
+export const LoaderContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+`

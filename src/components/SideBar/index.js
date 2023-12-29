@@ -22,8 +22,8 @@ const SideBar = () => (
 
       const activeTabBg = isDarkTheme ? '#424242' : '#e2e8f0'
       const iconTheme = isDarkTheme ? '#909090' : '#606060'
-      const activeIconThem = isDarkTheme ? ' #ff0b37' : '#ff0000'
-      const navTextColor = isDarkTheme ? '#cccccc' : '#cccccc'
+      const activeIconThem = isDarkTheme ? '#ff0b37' : '#ff0000'
+      const navTextColor = isDarkTheme ? '#cccccc' : '#606060'
       const activeNavText = isDarkTheme ? '#f9f9f9' : '#181818'
 
       const onClickHomeTab = () => {
@@ -55,6 +55,7 @@ const SideBar = () => (
               />
               <NavRoute
                 textColor={activeTab === 'Home' ? activeNavText : navTextColor}
+                fontWeight={activeTab === 'Home'}
               >
                 Home
               </NavRoute>
@@ -72,6 +73,7 @@ const SideBar = () => (
                 textColor={
                   activeTab === 'Trending' ? activeNavText : navTextColor
                 }
+                fontWeight={activeTab === 'Trending'}
               >
                 Trending
               </NavRoute>
@@ -89,6 +91,7 @@ const SideBar = () => (
                 textColor={
                   activeTab === 'Gaming' ? activeNavText : navTextColor
                 }
+                fontWeight={activeTab === 'Gaming'}
               >
                 Gaming
               </NavRoute>
@@ -108,13 +111,16 @@ const SideBar = () => (
                 textColor={
                   activeTab === 'Saved Videos' ? activeNavText : navTextColor
                 }
+                fontWeight={activeTab === 'Saved Videos'}
               >
                 Saved videos
               </NavRoute>
             </SideBarNavItems>
           </SideBarNavList>
           <ContactUsContainer>
-            <ContactUsHeader>CONTACT US</ContactUsHeader>
+            <ContactUsHeader isDarkTheme={isDarkTheme}>
+              CONTACT US
+            </ContactUsHeader>
             <SocialMediaContainer>
               <SocialMedia
                 src="https://assets.ccbp.in/frontend/react-js/nxt-watch-facebook-logo-img.png"
@@ -129,7 +135,7 @@ const SideBar = () => (
                 alt="linked in logo"
               />
             </SocialMediaContainer>
-            <ContactUsDescription>
+            <ContactUsDescription isDarkTheme={isDarkTheme}>
               Enjoy! Now to see your channels and recommendations!
             </ContactUsDescription>
           </ContactUsContainer>

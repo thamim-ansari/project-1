@@ -1,8 +1,11 @@
 import {Component} from 'react'
-import {MdClose} from 'react-icons/md'
+import Loader from 'react-loader-spinner'
+import Cookies from 'js-cookie'
+import {MdClose, MdSearch} from 'react-icons/md'
 
 import Header from '../Header'
 import SideBar from '../SideBar'
+import HomeVideoItem from '../HomeVideoItem'
 
 import ThemeContext from '../../context/ThemeContext'
 
@@ -17,16 +20,73 @@ import {
   BannerDescription,
   GetPremiumButton,
   BannerCloseButton,
+  LoaderContainer,
 } from './styledComponent'
-import './index.css'
+
+const apiStatusConstant = {
+  initial: 'INITIAL',
+  success: 'SUCCESS',
+  failure: 'FAILURE',
+  inprogress: 'INPROGRESS',
+}
 
 class Home extends Component {
   state = {
+    videosList: [],
     isBannerClose: false,
+    apiStatusConstant: apiStatusConstant.initial,
+  }
+
+  componentDidMount() {
+    this.getVideosData()
+  }
+
+  getFormattedData = data => ({
+    channel: {
+      name: data.channel.name,
+      profileImageUrl: data.channel.profile_image_url,
+    },
+    id: data.id,
+    title: data.title,
+    thumbnailUrl: data.thumbnail_url,
+    viewCount: data.view_count,
+    publishedAt: data.published_at,
+  })
+
+  getVideosData = async () => {
+    const apiUrl = 'https://apis.ccbp.in/videos/all?search='
+    const jwtToken = Cookies.get('jwt_token')
+    const options = {
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+      method: 'GET',
+    }
+    const response = await fetch(apiUrl, options)
+    const data = await response.json()
+    const formattedData = data.videos.map(eachData =>
+      this.getFormattedData(eachData),
+    )
+    this.setState({videosList: formattedData})
   }
 
   onClickCloseBanner = () => {
     this.setState({isBannerClose: true})
+  }
+
+  renderHomeVideos = () => {
+    const {videosList} = this.state
+    return <HomeVideoItem videosList={videosList} onRetry={this.onRetry} />
+  }
+
+  renderLoader = () => (
+    <LoaderContainer data-testid="loader">
+      <Loader type="ThreeDots" color="#3b82f6" height="50" width="50" />
+    </LoaderContainer>
+  )
+
+  onRetry = () => {
+    this.getVideosData()
   }
 
   render() {
@@ -62,6 +122,7 @@ class Home extends Component {
                           data-testid="close"
                         >
                           <MdClose
+                            size={18}
                             aria-label="closeIcon"
                             className="close-icon"
                           />
@@ -69,6 +130,15 @@ class Home extends Component {
                       </BannerLogoAndCloseContainer>
                     </BannerContainer>
                   )}
+                  <div className="home-content-container">
+                    <div className="home-content-responsive-container">
+                      <div className="search-container">
+                        <input type="search" placeholder="Search" />
+                        <MdSearch />
+                      </div>
+                      {this.renderHomeVideos()}
+                    </div>
+                  </div>
                 </BannerAndContentContainer>
               </HomeContainer>
             </HomePageContainer>
