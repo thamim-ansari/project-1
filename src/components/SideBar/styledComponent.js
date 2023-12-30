@@ -29,7 +29,7 @@ export const NavRoute = styled.p`
   color: ${props => props.textColor};
   font-family: 'Roboto';
   font-size: 15px;
-  font-weight: ${props => (props.fontWeight ? 'Bold' : '400')};
+  font-weight: ${props => (props.weight ? 'Bold' : '400')};
   margin-left: 25px;
 `
 export const ContactUsContainer = styled.div`

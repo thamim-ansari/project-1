@@ -13,3 +13,12 @@
 .light-icon {
   color: #f4f4f4;
 }
+.popup-content {
+  background-color: #313131;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 150px;
+  border-radius: 8px;
+}

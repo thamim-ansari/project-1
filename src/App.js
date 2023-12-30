@@ -4,6 +4,7 @@ import ThemeContext from './context/ThemeContext'
 
 import Login from './components/Login'
 import Home from './components/Home'
+import VideoItemDetails from './components/VideoItemDetails'
 
 import './App.css'
 
@@ -24,7 +25,6 @@ class App extends Component {
 
   render() {
     const {isDarkTheme, savedVideos, activeTab} = this.state
-    console.log(activeTab)
     return (
       <ThemeContext.Provider
         value={{
@@ -35,8 +35,9 @@ class App extends Component {
         }}
       >
         <Switch>
-          <Route exact path="/login" from component={Login} />
-          <Route exact path="/" from component={Home} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/videos/:id" component={VideoItemDetails} />
         </Switch>
       </ThemeContext.Provider>
     )

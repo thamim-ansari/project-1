@@ -1,5 +1,6 @@
 import {Link, withRouter} from 'react-router-dom'
 import Cookies from 'js-cookie'
+import Popup from 'reactjs-popup'
 import {FiSun, FiLogOut} from 'react-icons/fi'
 import {RiMoonFill} from 'react-icons/ri'
 import {GiHamburgerMenu} from 'react-icons/gi'
@@ -15,6 +16,10 @@ import {
   MobileLogoutButton,
   ProfileImage,
   DesktopLogoutButton,
+  PopupContainer,
+  PopupDescription,
+  PopupButtonContainer,
+  PopupButton,
 } from './styledComponent'
 
 const Header = props => {
@@ -49,6 +54,7 @@ const Header = props => {
         const onClickToggleTheme = () => {
           toggleTheme()
         }
+        const isCancel = true
         return (
           <NavContainer isDarkTheme={isDarkTheme}>
             <ResponsiveContainer>
@@ -68,12 +74,64 @@ const Header = props => {
                   src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png"
                   alt="profile"
                 />
-                <MobileLogoutButton onClick={onClickLogout}>
-                  {logoutIcon}
-                </MobileLogoutButton>
-                <DesktopLogoutButton onClick={onClickLogout}>
-                  Logout
-                </DesktopLogoutButton>
+                <Popup
+                  modal
+                  trigger={
+                    <MobileLogoutButton onClick={onClickLogout}>
+                      {logoutIcon}
+                    </MobileLogoutButton>
+                  }
+                  className="popup-content"
+                >
+                  {close => (
+                    <PopupContainer>
+                      <PopupDescription>
+                        Are you sure, you want to logout?
+                      </PopupDescription>
+                      <PopupButtonContainer>
+                        <PopupButton type="button" onClick={() => close()}>
+                          Close
+                        </PopupButton>
+                        <PopupButton
+                          type="button"
+                          onClick={onClickLogout}
+                          isCancel={isCancel}
+                        >
+                          Confirm
+                        </PopupButton>
+                      </PopupButtonContainer>
+                    </PopupContainer>
+                  )}
+                </Popup>
+                <Popup
+                  modal
+                  trigger={
+                    <DesktopLogoutButton onClick={onClickLogout}>
+                      Logout
+                    </DesktopLogoutButton>
+                  }
+                  className="popup-content"
+                >
+                  {close => (
+                    <PopupContainer>
+                      <PopupDescription>
+                        Are you sure, you want to logout?
+                      </PopupDescription>
+                      <PopupButtonContainer>
+                        <PopupButton type="button" onClick={() => close()}>
+                          Close
+                        </PopupButton>
+                        <PopupButton
+                          type="button"
+                          onClick={onClickLogout}
+                          isCancel={isCancel}
+                        >
+                          Confirm
+                        </PopupButton>
+                      </PopupButtonContainer>
+                    </PopupContainer>
+                  )}
+                </Popup>
               </NavMenuContainer>
             </ResponsiveContainer>
           </NavContainer>

@@ -55,7 +55,7 @@ const SideBar = () => (
               />
               <NavRoute
                 textColor={activeTab === 'Home' ? activeNavText : navTextColor}
-                fontWeight={activeTab === 'Home'}
+                weight={activeTab === 'Home'}
               >
                 Home
               </NavRoute>
@@ -73,7 +73,7 @@ const SideBar = () => (
                 textColor={
                   activeTab === 'Trending' ? activeNavText : navTextColor
                 }
-                fontWeight={activeTab === 'Trending'}
+                weight={activeTab === 'Trending'}
               >
                 Trending
               </NavRoute>
@@ -91,7 +91,7 @@ const SideBar = () => (
                 textColor={
                   activeTab === 'Gaming' ? activeNavText : navTextColor
                 }
-                fontWeight={activeTab === 'Gaming'}
+                weight={activeTab === 'Gaming'}
               >
                 Gaming
               </NavRoute>
@@ -111,7 +111,7 @@ const SideBar = () => (
                 textColor={
                   activeTab === 'Saved Videos' ? activeNavText : navTextColor
                 }
-                fontWeight={activeTab === 'Saved Videos'}
+                weight={activeTab === 'Saved Videos'}
               >
                 Saved videos
               </NavRoute>

@@ -82,3 +82,30 @@ export const DesktopLogoutButton = styled.button`
     border-radius: 3px;
   }
 `
+export const PopupContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+export const PopupButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+export const PopupDescription = styled.p`
+  color: #f9f9f9;
+  font-family: 'Roboto';
+  font-size: 14px;
+`
+export const PopupButton = styled.button`
+  color: ${props => (props.isCancel ? '#f9f9f9' : '#94a3b8')};
+  background-color: ${props => (props.isCancel ? '#3b82f6' : 'transparent')};
+  border: ${props => (props.isCancel ? 'none' : '1px solid #94a3b8')};
+  font-family: 'Roboto';
+  font-size: 14px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  width: 80px;
+  border-radius: 4px;
+  margin-left: 10px;
+  margin-right: 10px;
+`

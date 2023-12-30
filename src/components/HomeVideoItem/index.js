@@ -1,3 +1,5 @@
+import {Link} from 'react-router-dom'
+import {BsDot} from 'react-icons/bs'
 import ThemeContext from '../../context/ThemeContext'
 import {
   NoSearchResultContainer,
@@ -12,7 +14,15 @@ import {
   ChannelLogoImage,
   VideoHeadingAndContentContainer,
   VideoHeading,
+  VideoStatsContainer,
+  ChannelName,
+  VideoStats,
+  Dot1,
+  Dot2,
+  Views,
+  UploadedOn,
 } from './styledComponent'
+import './index.css'
 
 const HomeVideoItem = props => {
   const {videosList, onRetry} = props
@@ -51,13 +61,30 @@ const HomeVideoItem = props => {
           <VideosList>
             {videosList.map(eachItem => (
               <VideoItem key={eachItem.id}>
-                <ThumbNailImage src={eachItem.thumbnailUrl} />
-                <VideoInfoContainer>
-                  <ChannelLogoImage src={eachItem.channel.profileImageUrl} />
-                  <VideoHeadingAndContentContainer>
-                    <VideoHeading>{eachItem.title}</VideoHeading>
-                  </VideoHeadingAndContentContainer>
-                </VideoInfoContainer>
+                <Link to={`/videos/${eachItem.id}`} className="link-items">
+                  <ThumbNailImage src={eachItem.thumbnailUrl} />
+                  <VideoInfoContainer>
+                    <ChannelLogoImage src={eachItem.channel.profileImageUrl} />
+                    <VideoHeadingAndContentContainer>
+                      <VideoHeading isDarkTheme={isDarkTheme}>
+                        {eachItem.title}
+                      </VideoHeading>
+                      <VideoStatsContainer>
+                        <ChannelName>{eachItem.channel.name}</ChannelName>
+                        <VideoStats>
+                          <Dot1>
+                            <BsDot size={20} color=" #475569" />
+                          </Dot1>
+                          <Views>{eachItem.viewCount}</Views>
+                          <Dot2>
+                            <BsDot size={20} color=" #475569" />
+                          </Dot2>
+                          <UploadedOn>{eachItem.publishedAt}</UploadedOn>
+                        </VideoStats>
+                      </VideoStatsContainer>
+                    </VideoHeadingAndContentContainer>
+                  </VideoInfoContainer>
+                </Link>
               </VideoItem>
             ))}
           </VideosList>
@@ -65,7 +92,7 @@ const HomeVideoItem = props => {
       }}
     </ThemeContext.Consumer>
   )
-  return videosList.length === 0 ? renderNoResultView() : renderVideoList()
+  return videosList.length > 0 ? renderVideoList() : renderNoResultView()
 }
 
 export default HomeVideoItem
