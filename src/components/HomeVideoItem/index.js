@@ -62,9 +62,15 @@ const HomeVideoItem = props => {
             {videosList.map(eachItem => (
               <VideoItem key={eachItem.id}>
                 <Link to={`/videos/${eachItem.id}`} className="link-items">
-                  <ThumbNailImage src={eachItem.thumbnailUrl} />
+                  <ThumbNailImage
+                    src={eachItem.thumbnailUrl}
+                    alt="video thumbnail"
+                  />
                   <VideoInfoContainer>
-                    <ChannelLogoImage src={eachItem.channel.profileImageUrl} />
+                    <ChannelLogoImage
+                      src={eachItem.channel.profileImageUrl}
+                      alt="channel logo"
+                    />
                     <VideoHeadingAndContentContainer>
                       <VideoHeading isDarkTheme={isDarkTheme}>
                         {eachItem.title}

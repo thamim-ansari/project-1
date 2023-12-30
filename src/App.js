@@ -23,8 +23,15 @@ class App extends Component {
     this.setState({activeTab: tab})
   }
 
+  addVideo = video => {
+    this.setState(prevState => ({
+      savedVideos: [...prevState.savedVideos, video],
+    }))
+  }
+
   render() {
     const {isDarkTheme, savedVideos, activeTab} = this.state
+    console.log(savedVideos)
     return (
       <ThemeContext.Provider
         value={{
@@ -32,6 +39,7 @@ class App extends Component {
           activeTab,
           toggleTheme: this.toggleTheme,
           changeTab: this.changeTab,
+          addVideo: this.addVideo,
         }}
       >
         <Switch>
