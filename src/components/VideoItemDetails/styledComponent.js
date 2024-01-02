@@ -74,7 +74,7 @@ export const VideoDetails = styled.div`
     margin-right: 0px;
   }
 `
-export const VideoHeading = styled.h1`
+export const VideoHeading = styled.p`
   color: ${props => (props.isDarkTheme ? ' #e2e8f0' : '#1e293b')};
   font-size: 18px;
   font-family: 'Roboto';

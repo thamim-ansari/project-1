@@ -1,0 +1,8 @@
+.trending-videos-link-items {
+  text-decoration: none;
+}
+@media screen and (min-width: 768px) {
+  .trending-videos-link-items {
+    display: flex;
+  }
+}

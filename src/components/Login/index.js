@@ -1,4 +1,5 @@
 import {Component} from 'react'
+import {Redirect} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import ThemeContext from '../../context/ThemeContext'
 import {
@@ -75,6 +76,10 @@ class Login extends Component {
       errorMsg,
     } = this.state
     const passwordType = isPasswordShown ? 'text' : 'password'
+    const Token = Cookies.get('jwt_token')
+    if (Token !== undefined) {
+      return <Redirect to="/" />
+    }
     return (
       <ThemeContext.Consumer>
         {value => {
@@ -86,7 +91,7 @@ class Login extends Component {
             <LoginPageContainer isDarkTheme={isDarkTheme}>
               <ResponsiveContainer>
                 <LoginContainer isDarkTheme={isDarkTheme}>
-                  <LoginLogoImage src={loginLogoImg} alt="nxt watch logo" />
+                  <LoginLogoImage src={loginLogoImg} alt="website logo" />
                   <LoginFromContainer onSubmit={this.onSubmitForm}>
                     <FormInputContainer>
                       <FormLabel htmlFor="username" isDarkTheme={isDarkTheme}>

@@ -2,8 +2,8 @@ import {Link} from 'react-router-dom'
 import {BsDot} from 'react-icons/bs'
 import ThemeContext from '../../context/ThemeContext'
 import {
-  VideoItem,
-  ThumbNailImage,
+  SavedVideosListItem,
+  SavedVideosImage,
   VideoInfoContainer,
   ChannelLogoImage,
   VideoHeadingAndContentContainer,
@@ -18,8 +18,8 @@ import {
 } from './styledComponent'
 import './index.css'
 
-const HomeVideoItem = props => {
-  const {HomeVideoDetails} = props
+const SavedVideosList = props => {
+  const {savedVideosDetails} = props
   const {
     id,
     thumbnailUrl,
@@ -28,22 +28,15 @@ const HomeVideoItem = props => {
     name,
     viewCount,
     publishedAt,
-  } = HomeVideoDetails
-  const renderVideoList = () => (
+  } = savedVideosDetails
+  return (
     <ThemeContext.Consumer>
       {value => {
-        const {isDarkTheme, changeTab} = value
-        const onClickChangeTab = () => {
-          changeTab(' ')
-        }
+        const {isDarkTheme} = value
         return (
-          <VideoItem key={id}>
-            <Link
-              to={`/videos/${id}`}
-              className="link-items"
-              onClick={onClickChangeTab}
-            >
-              <ThumbNailImage src={thumbnailUrl} alt="video thumbnail" />
+          <SavedVideosListItem key={id}>
+            <Link to={`/videos/${id}`} className="saved-videos-link-items">
+              <SavedVideosImage src={thumbnailUrl} alt="video thumbnail" />
               <VideoInfoContainer>
                 <ChannelLogoImage src={profileImageUrl} alt="channel logo" />
                 <VideoHeadingAndContentContainer>
@@ -64,12 +57,11 @@ const HomeVideoItem = props => {
                 </VideoHeadingAndContentContainer>
               </VideoInfoContainer>
             </Link>
-          </VideoItem>
+          </SavedVideosListItem>
         )
       }}
     </ThemeContext.Consumer>
   )
-  return renderVideoList()
 }
 
-export default HomeVideoItem
+export default SavedVideosList

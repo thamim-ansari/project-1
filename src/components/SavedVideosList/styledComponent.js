@@ -1,35 +1,40 @@
 import styled from 'styled-components'
 
-export const VideoItem = styled.li`
-  width: 100%;
+export const SavedVideosListItem = styled.li`
   list-style-type: none;
   @media screen and (min-width: 768px) {
-    width: 30%;
-    margin-right: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
   }
 `
-export const ThumbNailImage = styled.img`
+export const SavedVideosImage = styled.img`
   width: 100%;
-  height: 200px;
+  @media screen and (min-width: 768px) {
+    width: 200px;
+    height: 110px;
+  }
 `
 export const VideoInfoContainer = styled.div`
   display: flex;
   padding: 15px;
+  @media screen and (min-width: 768px) {
+    padding: 0px;
+  }
 `
 export const ChannelLogoImage = styled.img`
   width: 35px;
   height: 35px;
   align-self: flex-start;
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
 `
-
 export const VideoHeadingAndContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 10px;
 `
 
-export const VideoHeading = styled.h1`
+export const VideoHeading = styled.p`
   color: ${props => (props.isDarkTheme ? '#f4f4f4' : '#1e293b')};
   font-family: 'Roboto';
   font-size: 14px;

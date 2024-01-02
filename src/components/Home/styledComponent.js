@@ -150,3 +150,38 @@ export const RetryButton = styled.button`
   outline: none;
   cursor: pointer;
 `
+export const NoSearchResultContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+export const NoSearchResultImage = styled.img`
+  width: 280px;
+  height: 220px;
+  margin-bottom: 15px;
+`
+export const NoSearchResultHeading = styled.h1`
+  color: ${props => (props.isDarkTheme ? '#f9f9f9' : '#0f0f0f')};
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 20px;
+  margin-bottom: 15px;
+`
+export const NoSearchResultDescription = styled.p`
+  color: ${props => (props.isDarkTheme ? '#94a3b8' : '#475569')};
+  font-family: 'Roboto';
+  font-size: 16px;
+  margin: 0px;
+  margin-bottom: 20px;
+`
+export const VideosList = styled.ul`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0px;
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+`

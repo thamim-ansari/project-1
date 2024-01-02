@@ -20,8 +20,6 @@ export const SideBarNavList = styled.ul`
 `
 export const SideBarNavItems = styled.li`
   list-style-type: none;
-  display: flex;
-  align-items: center;
   background-color: ${props => props.bgColor};
   padding-left: 20px;
 `
@@ -35,7 +33,7 @@ export const NavRoute = styled.p`
 export const ContactUsContainer = styled.div`
   margin-left: 15px;
 `
-export const ContactUsHeader = styled.h1`
+export const ContactUsHeader = styled.p`
   color: ${props => (props.isDarkTheme ? '#f9f9f9' : '#1e293b')};
   font-family: 'Roboto';
   font-size: 14px;

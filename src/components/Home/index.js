@@ -32,6 +32,11 @@ import {
   FailureHeading,
   FailureDescription,
   RetryButton,
+  NoSearchResultContainer,
+  NoSearchResultImage,
+  NoSearchResultHeading,
+  NoSearchResultDescription,
+  VideosList,
 } from './styledComponent'
 
 const apiStatusConstant = {
@@ -54,10 +59,8 @@ class Home extends Component {
   }
 
   getFormattedData = data => ({
-    channel: {
-      name: data.channel.name,
-      profileImageUrl: data.channel.profile_image_url,
-    },
+    name: data.channel.name,
+    profileImageUrl: data.channel.profile_image_url,
     id: data.id,
     title: data.title,
     thumbnailUrl: data.thumbnail_url,
@@ -132,66 +135,83 @@ class Home extends Component {
     </BannerContainer>
   )
 
-  renderHomeVideos = () => {
-    const {videosList} = this.state
-    return <HomeVideoItem videosList={videosList} onRetry={this.onRetry} />
-  }
-
-  renderLoader = () => (
-    <LoaderContainer data-testid="loader">
-      <Loader type="ThreeDots" color="#3b82f6" height="50" width="50" />
-    </LoaderContainer>
-  )
-
-  renderFailureView = () => (
-    <ThemeContext.Consumer>
-      {value => {
-        const {isDarkTheme} = value
-
-        const failureImgUrl = isDarkTheme
-          ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
-          : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
-        return (
-          <FailureContainer>
-            <FailureImage src={failureImgUrl} alt="failure view" />
-            <FailureHeading isDarkTheme={isDarkTheme}>
-              Oops! Something Went Wrong
-            </FailureHeading>
-            <FailureDescription isDarkTheme={isDarkTheme}>
-              We are having some trouble to complete your request.please try
-              again.
-            </FailureDescription>
-            <RetryButton type="button" onClick={this.onRetry}>
-              Retry
-            </RetryButton>
-          </FailureContainer>
-        )
-      }}
-    </ThemeContext.Consumer>
-  )
-
-  renderHomePageView = () => {
-    const {apiStatus} = this.state
-
-    switch (apiStatus) {
-      case apiStatusConstant.success:
-        return this.renderHomeVideos()
-      case apiStatusConstant.failure:
-        return this.renderFailureView()
-      case apiStatusConstant.inprogress:
-        return this.renderLoader()
-      default:
-        return null
-    }
-  }
-
   render() {
     const {isBannerClose, searchInput} = this.state
-    console.log(searchInput)
     return (
       <ThemeContext.Consumer>
         {value => {
           const {isDarkTheme} = value
+          const failureImgUrl = isDarkTheme
+            ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
+            : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
+
+          const renderHomeVideos = () => {
+            const {videosList} = this.state
+            if (videosList.length > 0) {
+              return (
+                <VideosList>
+                  {videosList.map(eachItem => (
+                    <HomeVideoItem
+                      HomeVideoDetails={eachItem}
+                      key={eachItem.id}
+                    />
+                  ))}
+                </VideosList>
+              )
+            }
+            return (
+              <NoSearchResultContainer>
+                <NoSearchResultImage
+                  src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png "
+                  alt="no videos"
+                />
+                <NoSearchResultHeading isDarkTheme={isDarkTheme}>
+                  No Search result found
+                </NoSearchResultHeading>
+                <NoSearchResultDescription isDarkTheme={isDarkTheme}>
+                  Try different key words or remove search filter
+                </NoSearchResultDescription>
+                <RetryButton type="button" onClick={this.onRetry}>
+                  Retry
+                </RetryButton>
+              </NoSearchResultContainer>
+            )
+          }
+
+          const renderFailureView = () => (
+            <FailureContainer>
+              <FailureImage src={failureImgUrl} alt="failure view" />
+              <FailureHeading isDarkTheme={isDarkTheme}>
+                Oops! Something Went Wrong
+              </FailureHeading>
+              <FailureDescription isDarkTheme={isDarkTheme}>
+                We are having some trouble to complete your request.please try
+                again.
+              </FailureDescription>
+              <RetryButton type="button" onClick={this.onRetry}>
+                Retry
+              </RetryButton>
+            </FailureContainer>
+          )
+          const renderLoader = () => (
+            <LoaderContainer data-testid="loader">
+              <Loader type="ThreeDots" color="#3b82f6" height="50" width="50" />
+            </LoaderContainer>
+          )
+          const renderHomePageView = () => {
+            const {apiStatus} = this.state
+
+            switch (apiStatus) {
+              case apiStatusConstant.success:
+                return renderHomeVideos()
+              case apiStatusConstant.failure:
+                return renderFailureView()
+              case apiStatusConstant.inprogress:
+                return renderLoader()
+              default:
+                return null
+            }
+          }
           return (
             <HomePageContainer isDarkTheme={isDarkTheme} data-testid="home">
               <Header />
@@ -213,6 +233,7 @@ class Home extends Component {
                           type="button"
                           isDarkTheme={isDarkTheme}
                           onClick={this.onClickSearch}
+                          data-testid="searchButton"
                         >
                           <MdSearch
                             size={14}
@@ -221,7 +242,7 @@ class Home extends Component {
                         </SearchButton>
                       </SearchInputContainer>
                     </SearchBarContainer>
-                    {this.renderHomePageView()}
+                    {renderHomePageView()}
                   </HomeContentContainer>
                 </BannerAndContentContainer>
               </HomeContainer>

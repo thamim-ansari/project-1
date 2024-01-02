@@ -126,7 +126,7 @@ class VideoItemDetails extends Component {
               Oops! Something Went Wrong
             </FailureHeading>
             <FailureDescription isDarkTheme={isDarkTheme}>
-              We are having some trouble to complete your request.please try
+              We are having some trouble to complete your request. Please try
               again.
             </FailureDescription>
             <RetryButton type="button" onClick={this.onRetry}>
@@ -154,6 +154,7 @@ class VideoItemDetails extends Component {
     const {videoDetails, isLiked, isDisked, isSaved} = this.state
     const {
       description,
+      // eslint-disable-next-line
       id,
       publishedAt,
       title,
@@ -167,15 +168,14 @@ class VideoItemDetails extends Component {
       <ThemeContext.Consumer>
         {value => {
           const {isDarkTheme, addVideo} = value
-          const iconColor = isDarkTheme ? '#94a3b8' : '#475569'
-          const buttonText = isDarkTheme ? '#94a3b8' : '#475569'
-          const LikedColor = isLiked ? '#00306e' : buttonText
-          const DislikedColor = isDisked ? '#00306e' : buttonText
-          const SavedColor = isSaved ? '#00306e' : buttonText
+          const LikedColor = isLiked ? '#2563eb' : '#64748b'
+          const DislikedColor = isDisked ? '#2563eb' : '#64748b'
+          const SavedColor = isSaved ? '#2563eb' : '#64748b'
           const onToggleSaved = () => {
             this.setState(prev => ({isSaved: !prev.isSaved}))
             addVideo(videoDetails)
           }
+
           return (
             <>
               <VideoContainer>
@@ -205,7 +205,7 @@ class VideoItemDetails extends Component {
                       LikedColor={LikedColor}
                     >
                       <BiLike
-                        color={isLiked ? '#00306e' : iconColor}
+                        color={LikedColor}
                         size={20}
                         className="like-dislike-save-icons"
                       />
@@ -218,7 +218,7 @@ class VideoItemDetails extends Component {
                       onClick={this.onToggleDisLike}
                     >
                       <BiDislike
-                        color={isDisked ? '#00306e' : iconColor}
+                        color={DislikedColor}
                         size={20}
                         className="like-dislike-save-icons"
                       />
@@ -231,11 +231,11 @@ class VideoItemDetails extends Component {
                       onClick={onToggleSaved}
                     >
                       <MdPlaylistAdd
-                        color={isSaved ? '#00306e' : iconColor}
+                        color={SavedColor}
                         size={20}
                         className="like-dislike-save-icons"
                       />
-                      Save
+                      {isSaved ? 'Saved' : 'Save'}
                     </SavedButton>
                   </LikeAndDislikeContainer>
                 </VideoStatsContainer>

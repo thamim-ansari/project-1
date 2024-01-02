@@ -1,0 +1,5 @@
+.sidebar-link-items {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}

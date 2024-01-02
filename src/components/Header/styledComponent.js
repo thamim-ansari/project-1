@@ -84,17 +84,29 @@ export const DesktopLogoutButton = styled.button`
 `
 export const PopupContainer = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${props => (props.isDarkTheme ? '#313131' : '#ffffff')};
+  width: 300px;
+  height: 170px;
+  border-radius: 8px;
+`
+export const PopupContent = styled.div`
+  display: flex;
   flex-direction: column;
+  align-items: center;
+`
+export const PopupDescription = styled.p`
+  color: ${props => (props.isDarkTheme ? '#f9f9f9' : '#00306e')};
+  font-family: 'Roboto';
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 40px;
 `
 export const PopupButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`
-export const PopupDescription = styled.p`
-  color: #f9f9f9;
-  font-family: 'Roboto';
-  font-size: 14px;
 `
 export const PopupButton = styled.button`
   color: ${props => (props.isCancel ? '#f9f9f9' : '#94a3b8')};
@@ -108,4 +120,46 @@ export const PopupButton = styled.button`
   border-radius: 4px;
   margin-left: 10px;
   margin-right: 10px;
+`
+export const MobileNavigationPopupContainer = styled.div`
+  background-color: ${props => (props.isDarkTheme ? '#212121' : '#ffffff')};
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`
+export const SideBarContainer = styled.div`
+  background-color: ${props => (props.isDarkTheme ? '#212121' : '#ffffff')};
+  width: 100vw;
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`
+export const SideBarNavList = styled.ul`
+  list-style-type: none;
+  padding: 0px;
+`
+export const SideBarNavItems = styled.li`
+  list-style-type: none;
+  background-color: ${props => props.bgColor};
+  padding-left: 130px;
+  display: flex;
+  align-items: center;
+`
+export const NavRoute = styled.p`
+  color: ${props => props.textColor};
+  font-family: 'Roboto';
+  font-size: 15px;
+  font-weight: ${props => (props.weight ? 'Bold' : '400')};
+  margin-left: 25px;
+`
+export const NavRouteCloseButton = styled.button`
+  align-self: flex-end;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin-right: 20px;
 `

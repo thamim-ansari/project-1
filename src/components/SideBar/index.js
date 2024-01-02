@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom'
 import {AiFillHome} from 'react-icons/ai'
 import {HiFire} from 'react-icons/hi'
 import {SiYoutubegaming} from 'react-icons/si'
@@ -14,6 +15,7 @@ import {
   SocialMedia,
   ContactUsDescription,
 } from './styledComponent'
+import './index.css'
 
 const SideBar = () => (
   <ThemeContext.Consumer>
@@ -49,74 +51,88 @@ const SideBar = () => (
               onClick={onClickHomeTab}
               bgColor={activeTab === 'Home' ? activeTabBg : 'null'}
             >
-              <AiFillHome
-                size={20}
-                color={activeTab === 'Home' ? activeIconThem : iconTheme}
-              />
-              <NavRoute
-                textColor={activeTab === 'Home' ? activeNavText : navTextColor}
-                weight={activeTab === 'Home'}
-              >
-                Home
-              </NavRoute>
+              <Link to="/" className="sidebar-link-items">
+                <AiFillHome
+                  size={20}
+                  color={activeTab === 'Home' ? activeIconThem : iconTheme}
+                />
+                <NavRoute
+                  textColor={
+                    activeTab === 'Home' ? activeNavText : navTextColor
+                  }
+                  weight={activeTab === 'Home'}
+                >
+                  Home
+                </NavRoute>
+              </Link>
             </SideBarNavItems>
+
             <SideBarNavItems
               key="Trending"
               onClick={onClickTrendingTab}
               bgColor={activeTab === 'Trending' ? activeTabBg : 'null'}
             >
-              <HiFire
-                size={20}
-                color={activeTab === 'Trending' ? activeIconThem : iconTheme}
-              />
-              <NavRoute
-                textColor={
-                  activeTab === 'Trending' ? activeNavText : navTextColor
-                }
-                weight={activeTab === 'Trending'}
-              >
-                Trending
-              </NavRoute>
+              <Link to="/trending" className="sidebar-link-items">
+                <HiFire
+                  size={20}
+                  color={activeTab === 'Trending' ? activeIconThem : iconTheme}
+                />
+                <NavRoute
+                  textColor={
+                    activeTab === 'Trending' ? activeNavText : navTextColor
+                  }
+                  weight={activeTab === 'Trending'}
+                >
+                  Trending
+                </NavRoute>
+              </Link>
             </SideBarNavItems>
+
             <SideBarNavItems
               key="Gaming"
               onClick={onClickGamingTab}
               bgColor={activeTab === 'Gaming' ? activeTabBg : 'null'}
             >
-              <SiYoutubegaming
-                size={20}
-                color={activeTab === 'Gaming' ? activeIconThem : iconTheme}
-              />
-              <NavRoute
-                textColor={
-                  activeTab === 'Gaming' ? activeNavText : navTextColor
-                }
-                weight={activeTab === 'Gaming'}
-              >
-                Gaming
-              </NavRoute>
+              <Link to="/gaming" className="sidebar-link-items">
+                <SiYoutubegaming
+                  size={20}
+                  color={activeTab === 'Gaming' ? activeIconThem : iconTheme}
+                />
+                <NavRoute
+                  textColor={
+                    activeTab === 'Gaming' ? activeNavText : navTextColor
+                  }
+                  weight={activeTab === 'Gaming'}
+                >
+                  Gaming
+                </NavRoute>
+              </Link>
             </SideBarNavItems>
+
             <SideBarNavItems
               key="Saved Videos"
               onClick={onClickSavedVideosTab}
               bgColor={activeTab === 'Saved Videos' ? activeTabBg : 'null'}
             >
-              <MdPlaylistAdd
-                size={20}
-                color={
-                  activeTab === 'Saved Videos' ? activeIconThem : iconTheme
-                }
-              />
-              <NavRoute
-                textColor={
-                  activeTab === 'Saved Videos' ? activeNavText : navTextColor
-                }
-                weight={activeTab === 'Saved Videos'}
-              >
-                Saved videos
-              </NavRoute>
+              <Link to="/saved-videos" className="sidebar-link-items">
+                <MdPlaylistAdd
+                  size={20}
+                  color={
+                    activeTab === 'Saved Videos' ? activeIconThem : iconTheme
+                  }
+                />
+                <NavRoute
+                  textColor={
+                    activeTab === 'Saved Videos' ? activeNavText : navTextColor
+                  }
+                  weight={activeTab === 'Saved Videos'}
+                >
+                  Saved videos
+                </NavRoute>
+              </Link>
             </SideBarNavItems>
           </SideBarNavList>
+
           <ContactUsContainer>
             <ContactUsHeader isDarkTheme={isDarkTheme}>
               CONTACT US
