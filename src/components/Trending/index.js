@@ -97,7 +97,7 @@ class Trending extends Component {
   }
 
   onRetry = () => {
-    this.getFormattedData()
+    this.getTendingVideosData()
   }
 
   render() {

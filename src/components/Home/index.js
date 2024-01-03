@@ -166,7 +166,7 @@ class Home extends Component {
                   alt="no videos"
                 />
                 <NoSearchResultHeading isDarkTheme={isDarkTheme}>
-                  No Search result found
+                  No Search results found
                 </NoSearchResultHeading>
                 <NoSearchResultDescription isDarkTheme={isDarkTheme}>
                   Try different key words or remove search filter

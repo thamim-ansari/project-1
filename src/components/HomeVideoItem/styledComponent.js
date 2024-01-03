@@ -29,7 +29,7 @@ export const VideoHeadingAndContentContainer = styled.div`
   margin-left: 10px;
 `
 
-export const VideoHeading = styled.h1`
+export const VideoHeading = styled.p`
   color: ${props => (props.isDarkTheme ? '#f4f4f4' : '#1e293b')};
   font-family: 'Roboto';
   font-size: 14px;
